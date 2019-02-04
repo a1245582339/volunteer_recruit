@@ -28,7 +28,7 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+    //this.fetchData();
   },
   methods: {
     // 转换时间戳

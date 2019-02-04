@@ -4,7 +4,6 @@ module.exports = function(orm, db) {
       id: Number,
       stu_name: String,
       tel: String,
-      balance: Number,
       create_time: Number,
       avatar:String,
       ischecked:Number,

@@ -5,17 +5,11 @@
       </el-table-column>
       <el-table-column prop="time" label="创建时间" width="180">
       </el-table-column>
-      <el-table-column prop="course_name" label="课程名称" width="180">
-      </el-table-column>
-      <el-table-column prop="spend" label="花费积分">
+      <el-table-column prop="recruit_title" label="招募标题">
       </el-table-column>
       <el-table-column label="操作">
       <template slot-scope="scope">
-        <el-button @click="toCourse(scope.row.course_id)" type="primary" size="mini">查看</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          @click="deleteRow(scope.$index, scope.row)">删除</el-button>
+        <el-button @click="toCourse(scope.row.recruit_id)" type="primary" size="mini">查看详情</el-button>
       </template>
     </el-table-column>
     </el-table>
@@ -24,7 +18,7 @@
 </template>
 
 <script>
-import { getOrderByStuId, delOrder } from "@/api/order";
+import { getOrder } from "@/api/recruit";
 export default {
   data() {
     return {
@@ -77,49 +71,18 @@ export default {
       this.listLoading = true;
       var data = [];
 
-      getOrderByStuId({ stu_id: vm.userInfo.stu_id }).then(response => {
+      getOrder({ stu_id: vm.userInfo.stu_id }).then(response => {
         var order = response.data;
         order.map((item, index) => {
           vm.tableData[index] = item;
           vm.tableData[index].time = vm.timestampToTime(item.create_time);
         });
+        console.log(JSON.stringify(order))
         vm.listLoading = false;
       });
     },
-    // 删除模块
-    deleteRow(index, rows) {
-      let data = rows.id; //删除
-      var vm = this;
-      this.$confirm("是否确定将该订单删除？注意！删除后将无法观看购买的课程！！！", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          delOrder(data).then(response => {
-            if (response.code == 20000) {
-              vm.tableData.splice(index, 1);
-              this.$message({
-                message: "删除成功",
-                type: "success"
-              });
-            } else {
-              this.$message({
-                message: "删除失败",
-                type: "success"
-              });
-            }
-          });
-        })
-        .catch(() => {
-          this.$message({
-            type: "info",
-            message: "已取消删除"
-          });
-        });
-    },
     toCourse(id){
-      this.$router.push('/coursedetail?courseid='+id)
+      this.$router.push('/recruitdetail?id='+id)
     },
   }
 };

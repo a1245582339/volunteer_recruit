@@ -79,6 +79,7 @@ export default {
             this.loading = false
             this.$router.push({ path: '/' })
           }).catch(() => {
+            this.$router.push({ path: '/' })
             this.loading = false
           })
         } else {

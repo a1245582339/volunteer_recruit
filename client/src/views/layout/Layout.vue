@@ -4,7 +4,7 @@
       <navbar></navbar>
       <nav-head :headerIndex="headerIndex"></nav-head>
       <app-main @listenActiveIndex="listenActiveIndex" style="margin:50px auto 0;width:1126px"></app-main>
-      <!-- <footer-bar style="margin-top:50px"></footer-bar> -->
+      <footer-bar style="margin-top:50px"></footer-bar>
     </div>
   </div>
 </template>

@@ -31,6 +31,18 @@
           <span>{{scope.row.desp}}</span>
         </template>
       </el-table-column>
+      <!-- 省份 -->
+      <el-table-column v-if="label.moudleProvince" :label="label.moudleProvince"  align="center">
+        <template slot-scope="scope">
+          <span>{{scope.row.province}}</span>
+        </template>
+      </el-table-column>
+      <!-- 地址 -->
+      <el-table-column v-if="label.moudleAddress" :label="label.moudleAddress"  align="center">
+        <template slot-scope="scope">
+          <span>{{scope.row.address}}</span>
+        </template>
+      </el-table-column>
       <!-- 模块数量 -->
       <el-table-column v-if="label.moduleCount" :label="label.moduleCount" width="110" align="center">
         <template slot-scope="scope">
@@ -41,6 +53,12 @@
       <el-table-column v-if="label.moudlePrice" :label="label.moudlePrice" width="110" align="center">
         <template slot-scope="scope">
           {{scope.row.price}}
+        </template>
+      </el-table-column>
+      <!-- 类型 -->
+      <el-table-column v-if="label.moudleType" align="center" width="110"  :label="label.moudleType">
+        <template slot-scope="scope">
+          <span  :value="scope.row.typeVal">{{scope.row.type}}</span>
         </template>
       </el-table-column>
       <!-- 模块系数 -->
@@ -68,13 +86,13 @@
         </template>
       </el-table-column>
       <!-- 预览 -->
-      <el-table-column  v-if="label.canPreview" label="预览" width="110" align="center">
+      <el-table-column  v-if="label.canPreview" :label="label.canPreview" width="110" align="center">
         <template slot-scope="scope">
           <el-button
-          @click="preview(scope.row.url)"
+          @click="preview(scope.row.dialogContent)"
           type="text"
           size="small">
-          预览
+          查看
         </el-button>
         </template>
       </el-table-column>
@@ -95,12 +113,7 @@
         </el-button>
       </template>
       </el-table-column>
-      <!-- 类型 -->
-      <el-table-column v-if="label.moudleType" align="center" :label="label.moudleType">
-        <template slot-scope="scope">
-          <span  :value="scope.row.typeVal">{{scope.row.type}}</span>
-        </template>
-      </el-table-column>
+      
 
       <el-table-column v-if="label.moudleCreatTime" align="center" :label="label.moudleCreatTime">
         <template slot-scope="scope">

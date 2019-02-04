@@ -7,12 +7,14 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
+    "json": "json-server --watch --port 3000 test.json",
     "build": "node build/build.js",
     "build:report": "npm_config_report=true node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "test": "npm run lint"
   },
   "dependencies": {
+    "array-includes": "^3.0.3",
     "axios": "0.17.1",
     "echarts": "^4.0.4",
     "element-ui": "2.0.8",

@@ -1,8 +1,8 @@
 // 检查用户名是否已被注册
 exports.CheckNameExist = function (req, res, next) {
   var name = req.query.name
-  req.models.student.find({
-    stu_name: name
+  req.models.volun.find({
+    volun_name: name
   }, function (err, list) {
     if (err) {
       res.json({
@@ -28,12 +28,12 @@ exports.CheckNameExist = function (req, res, next) {
 // 用户注册
 exports.Register = function (req, res, next) {
   var reg = req.body
-  req.models.student.find({
-    stu_name: reg.user_name
+  req.models.volun.find({
+    volun_name: reg.user_name
   }, function (err, list) {
     if (list.length == 0) {
-      req.models.student.create({
-        stu_name: reg.user_name,
+      req.models.volun.create({
+        volun_name: reg.user_name,
         tel: reg.tel,
         balance: 0,
         avatar: "http://localhost:3000/stu_avatar/默认.jpg",
@@ -60,8 +60,8 @@ exports.Register = function (req, res, next) {
 // 用户登录
 exports.Login = function (req, res, next) {
   var log = req.body
-  req.models.student.find({
-    stu_name: log.user_name,
+  req.models.volun.find({
+    volun_name: log.user_name,
     password: log.password
   }, function (err, list) {
     if (list.length == 0) {
@@ -111,7 +111,7 @@ exports.GetInfo = function (req, res, next) {
       });
     }
     var stu_id=list[0].stu_id
-    req.models.student.find({id:stu_id},function(err,list){
+    req.models.volun.find({id:stu_id},function(err,list){
       res.json({
         code: 20000,
         data: list
@@ -143,7 +143,7 @@ exports.SignIn = function(req,res,next){
         if(err){
           res.json({code:-1,data:{message:'签到失败'}})
         }else{
-          req.models.student.find({id:stu_id}).each(function(_list){
+          req.models.volun.find({id:stu_id}).each(function(_list){
             _list.balance+=50
           }).save(function(err){
             if(err){

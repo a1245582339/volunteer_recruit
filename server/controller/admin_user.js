@@ -2,7 +2,9 @@
 exports.Login = function(req, res, next) {
   let username = req.body.username,
       password = req.body.password;
+      console.log(username, password)
   req.models.admin_user.find({ name: username }, function(err, list) {
+      
     if(err){
         throw err;
     }else if(list.length==0){

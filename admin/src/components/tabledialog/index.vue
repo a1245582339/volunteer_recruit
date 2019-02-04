@@ -194,6 +194,7 @@ export default {
       for(var key in this.form){
         this.form[key]=''   // 
       }
+      this.isdisabled = true
     },
     AvatarChange(file){const name=file.name
       const isJPG = (name.indexOf('.jpg')> -1)||(name.indexOf('.jpeg')> -1)||(name.indexOf('.JPEG')> -1)||(name.indexOf('.JPG')> -1)
@@ -241,9 +242,7 @@ export default {
       this.$refs.vedio.clearFiles();
     }
     
-  },
-  computed: {},
-  mounted() {}
+  }
 };
 </script>
 

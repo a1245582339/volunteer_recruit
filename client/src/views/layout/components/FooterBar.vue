@@ -5,7 +5,7 @@
 		<div class="foot-nav">
 			<div class="foot-link">
 				<dl>
-					<dt>同类网站</dt>
+					<dt>教学网站</dt>
 					<dd>
 						<a href="https://www.imooc.com/">慕课网</a>
 					</dd>
@@ -35,18 +35,9 @@
 					</dd>
 				</dl>
 				<dl>
-					<dt>开发者博客</dt>
-					<dd>
-						<a href="https://a1245582339.github.io/">喵萌</a>
-					</dd>
-				</dl>
-				<dl>
 					<dt>开发者社交</dt>
 					<dd>
-						<a href="https://weibo.com/u/5210290149?refer_flag=1001030201_">新浪微博</a>
-					</dd>
-                    <dd>
-						<a href="http://1245582339.qzone.qq.com">QQ空间</a>
+						<a href="https://weibo.com">新浪微博</a>
 					</dd>
 				</dl>
 				<dl>
@@ -67,7 +58,7 @@
 				<dl>
 					<dt>公司详情</dt>
 					<dd>
-						<a href="https://www.minxing365.com/web/">公司官网</a>
+						<a href="">公司官网</a>
 					</dd>
 				</dl>
 			</div>
@@ -82,12 +73,12 @@
 				<h5>联系我们</h5>
 				<p>
 					地址：天津市河西区泗水道天津财经大学 <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天津市河西区南京路39号国际贸易中心写字楼B座2704-2707
-					<br /> 电话：13512877130 <br /> 邮箱：lizhipeng19960216@foxmail.com
+					<br /> 电话：13500000000 <br /> 邮箱：000000@foxmail.com
 				</p>
 			</div>
 			<div class="foot-bottom-right">
-				<h4>热线电话：13512877130</h4>
-				<p>网校管理系统 <br /> Copyright 2014 Dehui Network Co.,Ltd. All rights reserved. 京ICP备14012220号-1</p>
+				<h4>热线电话：000000</h4>
+				<p>义工招募系统 <br /> Copyright 2018 YiGong Network Co.,Ltd. All rights reserved. 京ICP备14012220号-1</p>
 			</div>
 		</div>
 	</div>

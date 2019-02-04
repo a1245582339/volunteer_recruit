@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
             const roles = [res.data.roles]
             store.dispatch('GenerateRoutes', { roles }).then(() => {
               // 根据roles权限生成可访问的路由表
-              // console.log(roles,JSON.stringify(store.getters.addRouters))
+              //console.log(roles,JSON.stringify(store.getters.addRouters))
               router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
               next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
             })
@@ -35,29 +35,29 @@ router.beforeEach((to, from, next) => {
           .catch(() => {
             store.dispatch('FedLogOut').then(() => {
               Message.error('验证失败,请重新登录')
-              next({ path: '/login' })
-            })
-          })
+              next({ path: '/login' });
+            });
+          });
       } else {
         // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
         if (hasPermission(store.getters.roles, to.meta.roles)) {
-          next() //
+          next(); //
         } else {
-          next({ path: '/401', replace: true, query: { noGoBack: true }})
+          next({ path: '/401', replace: true, query: { noGoBack: true } });
         }
         // 可删 ↑
       }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
-      next()
+      next();
     } else {
-      next('/login')
-      NProgress.done()
+      next('/login');
+      NProgress.done();
     }
   }
-})
+});
 
 router.afterEach(() => {
-  NProgress.done() // 结束Progress
-})
+  NProgress.done(); // 结束Progress
+});

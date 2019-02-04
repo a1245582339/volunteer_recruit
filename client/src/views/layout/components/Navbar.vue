@@ -16,12 +16,9 @@
           <el-dropdown-menu class="user-dropdown" slot="dropdown">
             <img :src="userInfo.avatar">
             <span class="username">{{userInfo.stu_name}}</span>
-            <!-- <el-button style="position:relative;top:-13px;left:10px" type="warning" icon="el-icon-star-off" size="mini" @click="toFav" round>收藏夹</el-button> -->
             <div class="userinfo-table">
               <el-form label-width="100px" class="demo-ruleForm" label-position="left">
-                <el-form-item class="table-item" label="积分">
-                  <span>{{userInfo.balance}}</span>
-                </el-form-item>
+                
                 <el-form-item class="table-item" label="审核状态">
                   <span style="color:#67C23A" v-if="userInfo.ischecked">已审核</span>
                   <span style="color:#F56C6C" v-else>待审核</span>
@@ -29,8 +26,7 @@
               </el-form>
             </div>
 
-  <!-- <el-button v-if="!haveSign" style="display:block;margin:0 auto" type="warning" @click="sign">每日签到</el-button>
-   <el-button v-else style="display:block;margin:0 auto" type="info" disabled>今日已签到</el-button> -->
+   
             <!-- 按钮组 -->
             <el-button-group style="margin-left:30px;margin-top:5px">
               <el-button @click="toMe">个人中心</el-button>
@@ -312,9 +308,9 @@
           });
           vm.loginVisible = false;
           vm.$store.commit("toLogin", res.data[0]);
-          checkIfSigned({stu_id:res.data[0].id}).then(response=>{
-            vm.haveSign = response.data.haveSign
-          })
+          // checkIfSigned({stu_id:res.data[0].id}).then(response=>{
+          //   vm.haveSign = response.data.haveSign
+          // })
         });
       }
     },
@@ -361,9 +357,9 @@
                   });
                   vm.loginVisible = false;
                   vm.$store.commit("toLogin", res.data[0]);
-                  checkIfSigned({stu_id:res.data[0].id}).then(response=>{
-                    vm.haveSign = response.data.haveSign
-                  })
+                  // checkIfSigned({stu_id:res.data[0].id}).then(response=>{
+                  //   vm.haveSign = response.data.haveSign
+                  // })
                 });
               })
               .catch(err => {
