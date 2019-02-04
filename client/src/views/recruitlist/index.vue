@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { getRecruit } from "@/api/recruit";
+import { getRecruit } from '@/api/recruit'
 import listItem from './listItem'
 export default {
-  name: "recruit",
+  name: 'recruit',
   components: {
     listItem
   },
@@ -30,35 +30,33 @@ export default {
       list: [],
       listLoading: false,
       searchWord: ''
-    };
+    }
   },
   computed: {},
   created() {
-    this.fetchData();
-    this.$emit("listenActiveIndex", "course");
+    this.fetchData()
+    this.$emit('listenActiveIndex', 'course')
   },
   methods: {
-    fetchData(){
+    fetchData() {
       var vm = this
-      getRecruit({searchWord: vm.searchWord}).then(res => {
-        
+      getRecruit({ searchWord: vm.searchWord }).then(res => {
         vm.list = res.data.filter(item => {
           return item.ischecked == 1
         })
       })
     },
-    toDetail(id){
+    toDetail(id) {
       this.$router.push({
-        name: "recruitdetail",
+        name: 'recruitdetail',
         query: {
           id: id
         }
       })
-      
     }
   },
   mounted() {}
-};
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

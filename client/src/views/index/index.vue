@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="$store.state.isLogin">
+  <div style="min-height: 100%">
+    <div style="min-height: 100%" v-if="$store.state.isLogin">
       <el-container>
         <el-aside style="padding: 20px" width="40%">
           <el-card class="box-card">
@@ -105,250 +105,250 @@
     getInfo,
     checkIfSigned,
     signIn
-  } from "@/api/loginAndReg";
-  import {
+  } from '@/api/loginAndReg'
+import {
     setToken,
     removeToken,
     getToken
-  } from "@/utils/auth";
-  import userCard from '@/components/userCard/index'
+  } from '@/utils/auth'
+import userCard from '@/components/userCard/index'
   export default {
-    name: "index",
+    name: 'index',
     components: {
       userCard
     },
     data() {
-      var vm = this;
+      var vm = this
       var validateRegUserName = (rule, value, callback) => {
-        var value = vm.reg.user_name;
-        if (value === "") {
-          vm.checkNameDisabled = true;
-          callback(new Error("请输入用户名"));
+        var value = vm.reg.user_name
+        if (value === '') {
+          vm.checkNameDisabled = true
+          callback(new Error('请输入用户名'))
         } else if (value.length > 16 || value.length < 4) {
-          vm.checkNameDisabled = true;
-          callback(new Error("用户名长度应在5-16字符之间"));
+          vm.checkNameDisabled = true
+          callback(new Error('用户名长度应在5-16字符之间'))
         } else if (!/^[\u4E00-\u9FA5A-Za-z][\u4E00-\u9FA5A-Za-z0-9].{3,14}$/.test(value)) {
-          vm.checkNameDisabled = true;
-          callback(new Error("用户名只能以汉字、字母开头"));
+          vm.checkNameDisabled = true
+          callback(new Error('用户名只能以汉字、字母开头'))
         } else {
-          vm.checkNameDisabled = false;
-          callback();
+          vm.checkNameDisabled = false
+          callback()
         }
-      };
+      }
       var validatePass = (rule, value, callback) => {
-        var value = vm.reg.password;
-        if (value === "") {
-          callback(new Error("请输入密码"));
+        var value = vm.reg.password
+        if (value === '') {
+          callback(new Error('请输入密码'))
         } else if (!/^[a-zA-Z]\w{5,17}$/.test(value)) {
           callback(
             new Error(
-              "密码须以字母开头，长度在6~18之间，只能包含字母、数字和下划线"
+              '密码须以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
             )
-          );
+          )
         } else {
-          if (this.reg.checkPass !== "") {
-            this.$refs.reg.validateField("checkPass");
+          if (this.reg.checkPass !== '') {
+            this.$refs.reg.validateField('checkPass')
           }
-          callback();
+          callback()
         }
-      };
+      }
       var validatelogUserName = (rule, value, callback) => {
-        var value = vm.log.user_name;
-        if (value === "") {
-          callback(new Error("请输入用户名"));
+        var value = vm.log.user_name
+        if (value === '') {
+          callback(new Error('请输入用户名'))
         } else {
-          callback();
+          callback()
         }
-      };
+      }
       var validatelogPass = (rule, value, callback) => {
-        var value = vm.log.password;
-        if (value === "") {
-          callback(new Error("请输入密码"));
+        var value = vm.log.password
+        if (value === '') {
+          callback(new Error('请输入密码'))
         } else if (!/^[a-zA-Z]\w{5,17}$/.test(value)) {
           callback(
             new Error(
-              "密码须以字母开头，长度在6~18之间，只能包含字母、数字和下划线"
+              '密码须以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
             )
-          );
+          )
         } else {
-          if (this.reg.checkPass !== "") {
-            this.$refs.reg.validateField("checkPass");
+          if (this.reg.checkPass !== '') {
+            this.$refs.reg.validateField('checkPass')
           }
-          callback();
+          callback()
         }
-      };
+      }
       var validatePass2 = (rule, value, callback) => {
-        var value = vm.reg.checkPass;
-        if (value === "") {
-          callback(new Error("请再次输入密码"));
+        var value = vm.reg.checkPass
+        if (value === '') {
+          callback(new Error('请再次输入密码'))
         } else if (value !== this.reg.password) {
-          callback(new Error("两次输入密码不一致!"));
+          callback(new Error('两次输入密码不一致!'))
         } else {
-          callback();
+          callback()
         }
-      };
+      }
       var validateTel = (rule, value, callback) => {
-        var value = vm.reg.tel;
-        if (value === "") {
-          callback(new Error("请输入手机号码"));
+        var value = vm.reg.tel
+        if (value === '') {
+          callback(new Error('请输入手机号码'))
         } else if (!/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(
-            value
-          )) {
+          value
+        )) {
           // 手机号码正则匹配更新到2018.1，支持166网段
-          callback(new Error("请输入正确手机号码!"));
+          callback(new Error('请输入正确手机号码!'))
         } else {
-          callback();
+          callback()
         }
-      };
+      }
       return {
         isLogin: false,
         log: {
-          user_name: "",
-          password: "",
+          user_name: '',
+          password: '',
           autoLogin: false
         },
         reg: {
-          user_name: "",
-          password: "",
-          checkPass: "",
-          sex: "",
-          tel: "",
-          avatar: ""
+          user_name: '',
+          password: '',
+          checkPass: '',
+          sex: '',
+          tel: '',
+          avatar: ''
         },
         checkLog: {
           logUserName: [{
             required: true,
             validator: validatelogUserName,
-            trigger: "blur"
+            trigger: 'blur'
           }],
           logPass: [{
             required: true,
             validator: validatelogPass,
-            trigger: "blur"
+            trigger: 'blur'
           }]
         },
         checkReg: {
           regPass: [{
             required: true,
             validator: validatePass,
-            trigger: "blur"
+            trigger: 'blur'
           }],
           checkPass: [{
             required: true,
             validator: validatePass2,
-            trigger: "blur"
+            trigger: 'blur'
           }],
           tel: [{
             required: true,
             validator: validateTel,
-            trigger: "blur"
+            trigger: 'blur'
           }],
           regUserName: [{
             required: true,
             validator: validateRegUserName,
-            trigger: "change"
+            trigger: 'change'
           }],
           sex: [{
             required: true,
-            message: "请选择性别",
-            trigger: "change"
+            message: '请选择性别',
+            trigger: 'change'
           }]
         },
-        user_name: "", // 当前用户名
+        user_name: '', // 当前用户名
         nameCanReg: 0, // 输入的用户名是否已注册,1是可以注册，2是已被占用
         checkNameDisabled: true, // 检查用户名按钮，没填东西不能点
-        loginDisable: true, // 登录按钮，没填完信息不能点
-      };
-    },
+        loginDisable: true // 登录按钮，没填完信息不能点
+      }
+  },
     computed: {},
     created() {
       this.$emit('listenActiveIndex', 'index')
     },
     methods: {
       timestampToTime(timestamp) {
-        var date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-        var Y = date.getFullYear() + '-';
-        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-        var D = date.getDate() + ' ';
-        var h = date.getHours() + ':';
-        var m = date.getMinutes() + ':';
-        var s = date.getSeconds();
-        return Y + M + D + h + m + s;
+        var date = new Date(timestamp * 1000) // 时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear() + '-'
+        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+        var D = date.getDate() + ' '
+        var h = date.getHours() + ':'
+        var m = date.getMinutes() + ':'
+        var s = date.getSeconds()
+        return Y + M + D + h + m + s
       },
       checkNameIfExist() {
-        var vm = this;
+        var vm = this
         checkNameExist({
           name: this.reg.user_name
         }).then(response => {
-          vm.nameCanReg = response.data;
-        });
+          vm.nameCanReg = response.data
+        })
       },
       logSubmit(formName) {
-        var vm = this;
+        var vm = this
         this.$refs[formName].validate(valid => {
           if (valid) {
             login(vm.log)
               .then(response => {
-                var token = response.data.token;
+                var token = response.data.token
                 if (vm.log.autoLogin) {
-                  setToken(token);
+                  setToken(token)
                 }
                 getInfo({
                   token: token
                 }).then(res => {
                   this.$message({
-                    message: "登录成功",
-                    type: "success"
-                  });
-                  vm.loginVisible = false;
-                  vm.$store.commit("toLogin", res.data[0]);
-                  // checkIfSigned({
-                  //   stu_id: res.data[0].id
-                  // }).then(response => {
-                  //   vm.haveSign = response.data.haveSign
-                  // })
-                });
+                    message: '登录成功',
+                    type: 'success'
+                  })
+                  vm.loginVisible = false
+                  vm.$store.commit('toLogin', res.data[0])
+                // checkIfSigned({
+                //   stu_id: res.data[0].id
+                // }).then(response => {
+                //   vm.haveSign = response.data.haveSign
+                // })
+                })
               })
               .catch(err => {
-                this.$message.error("用户名或密码错误，请重试");
-              });
+                this.$message.error('用户名或密码错误，请重试')
+              })
           } else {
-            this.$message.error("请正确填写登录信息！");
-            return false;
+            this.$message.error('请正确填写登录信息！')
+            return false
           }
-        });
+        })
       },
       regSubmit(formName) {
-        var vm = this;
+        var vm = this
         if (this.nameCanReg != 1) {
           this.$message({
-            message: "请先通过用户名检验！",
-            type: "warning"
-          });
-          return false;
+            message: '请先通过用户名检验！',
+            type: 'warning'
+          })
+          return false
         }
         this.$refs[formName].validate(valid => {
           if (valid) {
             register(vm.reg)
               .then(response => {
                 this.$message({
-                  message: "注册成功",
-                  type: "success"
-                });
-                vm.regVisible = false;
+                  message: '注册成功',
+                  type: 'success'
+                })
+                vm.regVisible = false
               })
               .catch(err => {
-                this.$message.error("手慢了哦，该用户名已被占用，换一个试试吧");
-              });
+                this.$message.error('手慢了哦，该用户名已被占用，换一个试试吧')
+              })
           } else {
-            this.$message.error("请正确填写注册信息！");
-            return false;
+            this.$message.error('请正确填写注册信息！')
+            return false
           }
-        });
-      },
+        })
+      }
     },
     mounted() {}
-  };
+  }
 
 </script>
 
@@ -356,7 +356,8 @@
   .index-bg{
     background-image: url('../../assets/index_bg.jpg');
     height: 100%;
-    background-size: cover
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .el-col-offset-2 {

@@ -4,7 +4,7 @@
      <!-- 序列号 -->
       <el-table-column v-if="!isMe" align="center" label='序号' width="95">
         <template slot-scope="scope">
-          {{scope.$index}}
+          {{scope.$index + 1}}
         </template>
       </el-table-column>
       <!-- 模块ID -->
@@ -151,24 +151,24 @@ export default {
     label: Object,
     updateRow: Function,
     deleteRow: Function,
-    preview:Function,
+    preview: Function,
     showList: Function,
-    check:Function,
+    check: Function,
     dialogFormVisible: Boolean,
-    currentId:Number,
-    isMe:Boolean,
-    cannotEdit:Boolean,
-    cannotDel:Boolean
+    currentId: Number,
+    isMe: Boolean,
+    cannotEdit: Boolean,
+    cannotDel: Boolean
   },
   data() {
     return {
-      formLabelWidth: "120px",
-    };
+      formLabelWidth: '120px'
+    }
   },
-  methods:{
-    
+  methods: {
+
   }
-};
+}
 </script>
 
 <style scoped>

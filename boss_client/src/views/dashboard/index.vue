@@ -1,8 +1,7 @@
 <template>
   <div class="dashboard-container">
-    <div>欢迎进入admin</div>
+    <div>欢迎进入</div>
     <div class="dashboard-text">用户名:{{name}}</div>
-     <div class="dashboard-text">手机:{{tel}}</div>
   </div>
 </template>
 
@@ -24,6 +23,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .dashboard {
+  font-size: 14px;
   &-container {
     margin: 30px;
   }

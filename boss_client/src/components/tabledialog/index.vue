@@ -38,13 +38,13 @@
          </el-form-item>
           <!-- ***********************类型选择****************************** -->
          <el-form-item v-if="label.moudleType" :label="label.moudleType" :label-width="formLabelWidth" prop="moudleType">
-           <el-select v-if="!isMe" @change="changeType" v-model="typeValue" auto-complete="off">
+           <el-select style="float: left" v-if="!isMe" @change="changeType" v-model="typeValue" auto-complete="off">
              <el-option v-for="item in type" :key="item.id" :label="item.name" :value="item.id"></el-option>  
            </el-select>
          </el-form-item>
           <!-- ***********************省份选择****************************** -->
          <el-form-item v-if="label.moudleProvince" :label="label.moudleProvince" :label-width="formLabelWidth" prop="moudleType">
-           <el-select v-if="!isMe" @change="changePro" v-model="province" auto-complete="off">
+           <el-select v-if="!isMe" @change="changePro" v-model="province" auto-complete="off" style="float: left">
              <el-option v-for="item in provienceArr" :key="item.id" :label="item" :value="item"></el-option>  
            </el-select>
          </el-form-item>
@@ -62,12 +62,13 @@
          </el-form-item>
           <!-- ***********************图片墙****************************** -->
           <el-form-item v-if="imgUploadList" label="原始图片" :label-width="formLabelWidth">
-           <div>
+           <div v-if="form.photos.length">
              <ul class="photos">
                <li v-for="(item,key) in form.photos" :key='key'>
                  <img :src="item" alt=""><i @click="removePhoto(key)" class="el-icon-error"></i></li>
              </ul>
            </div>
+           <div style="text-align: left" v-else>无图片</div>
          </el-form-item>
         <!-- ***********************富文本编辑器****************************** -->
         
@@ -116,7 +117,7 @@
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce";
+import Tinymce from '@/components/Tinymce'
 export default {
   components: { Tinymce },
   props: {
@@ -125,138 +126,135 @@ export default {
     type: Array,
     list: Array,
     isMe: Boolean,
-    actionUrl:String,
+    actionUrl: String,
     imgUploadList: Boolean
   },
 
   data() {
-    var vm = this;
+    var vm = this
     const checkName = (rule, value, callback) => {
       if (!value) {
-        vm.isdisabled = true;
-        return callback(new Error("模块名不能为空"));
+        vm.isdisabled = true
+        return callback(new Error('模块名不能为空'))
       } else {
-        vm.isdisabled = false;
-        callback();
+        vm.isdisabled = false
+        callback()
       }
-    };
+    }
     const checkDesp = (rule, value, callback) => {
       if (!value) {
-        vm.isdisabled = true;
-        return callback(new Error("模块描述不能为空"));
+        vm.isdisabled = true
+        return callback(new Error('模块描述不能为空'))
       } else {
-        vm.isdisabled = false;
-        callback();
+        vm.isdisabled = false
+        callback()
       }
-    };
+    }
     const checkCoefficicent = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error("系数不能为空"));
+        return callback(new Error('系数不能为空'))
       }
       setTimeout(() => {
         if (Number.isNaN(value)) {
-          callback(new Error("请输入数字值"));
+          callback(new Error('请输入数字值'))
         } else {
           if (value < 0) {
-            callback(new Error("必须为正数"));
+            callback(new Error('必须为正数'))
           } else {
-            callback();
+            callback()
           }
         }
-      }, 100);
-    };
+      }, 100)
+    }
     const checkPrice = (rule, value, callback) => {
-      var r = /^\+?[1-9][0-9]*$/;
+      var r = /^\+?[1-9][0-9]*$/
       if (!value && value !== 0) {
-        vm.isdisabled = true;
-        return callback(new Error("价格不能为空"));
+        vm.isdisabled = true
+        return callback(new Error('价格不能为空'))
       } else if (!r.test(value)) {
-        vm.isdisabled = true;
-        callback(new Error("请输入数字值"));
+        vm.isdisabled = true
+        callback(new Error('请输入数字值'))
       } else if (value < 0) {
-        vm.isdisabled = true;
-        callback(new Error("必须为正数"));
+        vm.isdisabled = true
+        callback(new Error('必须为正数'))
       } else {
-        vm.isdisabled = false;
-        callback();
+        vm.isdisabled = false
+        callback()
       }
-    };
+    }
     return {
       dialogFormVisible: false,
-      formLabelWidth: "80px",
-      typeValue: "",
+      formLabelWidth: '80px',
+      typeValue: '',
       isdisabled: true,
       imageUrl: '',
-      imageChange:false,
-      imgListChange:false,
+      imageChange: false,
+      imgListChange: false,
       province: '',
-      provienceArr: ['北京','天津','上海','重庆','南京','广州','深圳'],
+      provienceArr: ['北京', '天津', '上海', '重庆', '南京', '广州', '深圳', '河北', '山西', '内蒙古自治区', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '西藏自治区', '陕西', '甘肃', '宁夏回族自治区', '青海', '新疆维吾尔族自治区', '香港特别行政区', '澳门特别行政区', '台湾', '其他'],
       imgList: [],
       returnCount: 0,
       rules: {
-        name: [{ validator: checkName, trigger: "change" }],
-        desp: [{ validator: checkDesp, trigger: "change" }],
-        price: [{ validator: checkPrice, trigger: "change" }],
-        coefficient: [{ /*validator: checkCoefficicent,*/ trigger: "change" }]
+        name: [{ validator: checkName, trigger: 'change' }],
+        desp: [{ validator: checkDesp, trigger: 'change' }],
+        price: [{ validator: checkPrice, trigger: 'change' }],
+        coefficient: [{ /* validator: checkCoefficicent,*/ trigger: 'change' }]
       }
-    };
+    }
   },
   methods: {
     noshow() {
-      this.dialogFormVisible = !this.dialogFormVisible;
+      this.dialogFormVisible = !this.dialogFormVisible
     },
     commitForm() {
       // console.log(JSON.stringify(this.form))
 
-      if(this.imageChange){
-        this.$refs.image.submit();  // 如果图片有更改，则在上传成功的回调中
+      if (this.imageChange) {
+        this.$refs.image.submit() // 如果图片有更改，则在上传成功的回调中
       } else if (this.imgListChange) {
-        this.$refs.imageList.submit();
+        this.$refs.imageList.submit()
+      } else {
+        this.$emit('commitform')
       }
-      else {
-        this.$emit("commitform");
-      }
-       
     },
     changeType() {
-      this.form.type = this.typeValue;
+      this.form.type = this.typeValue
       this.isdisabled = false
     },
     changePro() {
-      this.form.province = this.province;
+      this.form.province = this.province
       this.isdisabled = false
     },
     open() {
       this.typeValue = this.form.type
       this.province = this.form.province
-      this.imageUrl=this.form.avatar
+      this.imageUrl = this.form.avatar
       this.imageChange = false // 打开dialog，回到false
       this.imgListChange = false
-      
     },
-    close(){
+    close() {
       this.$refs.dialogForm.resetFields()
     },
     chooseImg(file) {
-      const name=file.name
-      const isJPG = (name.indexOf('.jpg')> -1)||(name.indexOf('.jpeg')> -1)||(name.indexOf('.JPEG')> -1)||(name.indexOf('.JPG')> -1)
-      const isPNG = (name.indexOf('.png')> -1)||(name.indexOf('.PNG')> -1)
-      const isGIF = (name.indexOf('.gif')> -1)||(name.indexOf('.GIF')> -1)
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const name = file.name
+      const isJPG = (name.indexOf('.jpg') > -1) || (name.indexOf('.jpeg') > -1) || (name.indexOf('.JPEG') > -1) || (name.indexOf('.JPG') > -1)
+      const isPNG = (name.indexOf('.png') > -1) || (name.indexOf('.PNG') > -1)
+      const isGIF = (name.indexOf('.gif') > -1) || (name.indexOf('.GIF') > -1)
+      const isLt2M = file.size / 1024 / 1024 < 2
 
-      if (!isJPG&&!isPNG&&!isGIF) {
-        this.$message.error("上传图片只能是 JPG,GIF,PNG 格式!");
+      if (!isJPG && !isPNG && !isGIF) {
+        this.$message.error('上传图片只能是 JPG,GIF,PNG 格式!')
         return isJPG
       }
       if (!isLt2M) {
-        this.$message.error("上传图片大小不能超过 2MB!");
+        this.$message.error('上传图片大小不能超过 2MB!')
         return isLt2M
       }
-      
-      this.imageUrl = file.url
-      //console.log(this)
 
-      this.imgListChange=true // 如果图片发生更改，将它改为true
+      this.imageUrl = file.url
+      // console.log(this)
+
+      this.imgListChange = true // 如果图片发生更改，将它改为true
       this.isdisabled = false
     },
     removePhoto(key) {
@@ -264,66 +262,65 @@ export default {
       this.isdisabled = false
       this.$forceUpdate()
     },
-    AvatarChange(file){
-      const name=file.name
-      const isJPG = (name.indexOf('.jpg')> -1)||(name.indexOf('.jpeg')> -1)||(name.indexOf('.JPEG')> -1)||(name.indexOf('.JPG')> -1)
-      const isPNG = (name.indexOf('.png')> -1)||(name.indexOf('.PNG')> -1)
-      const isGIF = (name.indexOf('.gif')> -1)||(name.indexOf('.GIF')> -1)
-      const isLt2M = file.size / 1024 / 1024 < 2;
+    AvatarChange(file) {
+      const name = file.name
+      const isJPG = (name.indexOf('.jpg') > -1) || (name.indexOf('.jpeg') > -1) || (name.indexOf('.JPEG') > -1) || (name.indexOf('.JPG') > -1)
+      const isPNG = (name.indexOf('.png') > -1) || (name.indexOf('.PNG') > -1)
+      const isGIF = (name.indexOf('.gif') > -1) || (name.indexOf('.GIF') > -1)
+      const isLt2M = file.size / 1024 / 1024 < 2
 
-      if (!isJPG&&!isPNG&&!isGIF) {
-        this.$message.error("上传头像图片只能是 JPG,GIF,PNG 格式!");
+      if (!isJPG && !isPNG && !isGIF) {
+        this.$message.error('上传头像图片只能是 JPG,GIF,PNG 格式!')
         return isJPG
       }
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
+        this.$message.error('上传头像图片大小不能超过 2MB!')
         return isLt2M
       }
       this.imageUrl = file.url
-      this.imageChange=true // 如果图片发生更改，将它改为true
+      this.imageChange = true // 如果图片发生更改，将它改为true
     },
-    imgListUpSucc(res, file, fileList){
+    imgListUpSucc(res, file, fileList) {
       var path = res.data.path
       this.returnCount += 1
       this.form.photos.push(path)
-      if(this.returnCount != fileList.length) {
+      if (this.returnCount != fileList.length) {
         return false
       }
       // console.log('eeeeeee>>>' + JSON.stringify(this.form))
-      this.$emit("commitform");
-      
+      this.$emit('commitform')
     },
     handleAvatarSuccess(res, file) {
-      this.form.avatar=res.data.path
-      if(this.vedioChange){
-         this.$refs.vedio.submit();
-      }else{
-        this.$emit("commitform");
+      this.form.avatar = res.data.path
+      if (this.vedioChange) {
+        this.$refs.vedio.submit()
+      } else {
+        this.$emit('commitform')
       }
     },
-    vedioChangeCallback(file){
-      const name=file.name
-      const isMP4 = (name.indexOf('.mp4')> -1)||(name.indexOf('.MP4')> -1)
-      const isLt10M = file.size / 1024 / 1024 < 30;
+    vedioChangeCallback(file) {
+      const name = file.name
+      const isMP4 = (name.indexOf('.mp4') > -1) || (name.indexOf('.MP4') > -1)
+      const isLt10M = file.size / 1024 / 1024 < 30
 
       if (!isMP4) {
-        this.$message.error("上传视频只能是 MP4 格式!");
+        this.$message.error('上传视频只能是 MP4 格式!')
         return isMP4
       }
       if (!isLt10M) {
-        this.$message.error("上传视频大小不能超过 10MB!");
+        this.$message.error('上传视频大小不能超过 10MB!')
         return isLt10M
       }
-      this.vedioChange=true
+      this.vedioChange = true
     },
     VedioSuccess(res, file) {
-      this.form.url=res.data.path
-      this.$emit("commitform");
-      this.$refs.vedio.clearFiles();
+      this.form.url = res.data.path
+      this.$emit('commitform')
+      this.$refs.vedio.clearFiles()
     }
-    
+
   }
-};
+}
 </script>
 <style lang="scss" scope>
 .dialog-form {

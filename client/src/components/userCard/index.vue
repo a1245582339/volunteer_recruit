@@ -7,8 +7,8 @@
         <span class="value">{{user_info.stu_id}}</span>
       </li>
         <li>
-        <span class="label">学生姓名</span>
-        <span class="value">{{user_info.stu_name}}</span>
+        <span class="label">用户昵称</span>
+        <span class="value">{{user_info.volun_name}}</span>
       </li>
       <li>
         <span class="label">电话号码</span>

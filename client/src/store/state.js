@@ -2,7 +2,7 @@ const state = {
   isLogin: false,
   user_info: {
     stu_id: -1,
-    stu_name: '',
+    volun_name: '',
     tel: '',
     balance: 0,
     avatar: '',
