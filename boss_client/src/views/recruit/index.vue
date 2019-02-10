@@ -110,28 +110,34 @@ export default {
     deleteRow(index, rows) {
       const data = rows[index].id // 根据学生id删除课程
       console.log('要删除的模块name:', data)
-      delRecruit(data)
-        .then(response => {
-          console.log(response)
-          if (response.code == 20000) {
-            rows.splice(index, 1)
-            this.$message({
-              message: '删除成功',
-              type: 'success'
-            })
-          } else {
+      this.$confirm('是否确定将该青旅及相关招募信息删除？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        delRecruit(data)
+          .then(response => {
+            console.log(response)
+            if (response.code == 20000) {
+              rows.splice(index, 1)
+              this.$message({
+                message: '删除成功',
+                type: 'success'
+              })
+            } else {
+              this.$message({
+                message: '删除失败',
+                type: 'success'
+              })
+            }
+          })
+          .catch(err => {
             this.$message({
               message: '删除失败',
               type: 'success'
             })
-          }
-        })
-        .catch(err => {
-          this.$message({
-            message: '删除失败',
-            type: 'success'
           })
-        })
+      })
     },
     preview(desp) {
       this.desp = desp
