@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost_3306
+ Source Server         : MySQL
  Source Server Type    : MySQL
  Source Server Version : 50720
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 02/10/2018 19:38:30
+ Date: 10/02/2019 17:32:41
 */
 
 SET NAMES utf8mb4;
@@ -27,7 +27,7 @@ CREATE TABLE `admin_token`  (
   `deadline` bigint(255) NOT NULL,
   `admin_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_token
@@ -129,6 +129,17 @@ INSERT INTO `admin_token` VALUES (98, '1538451304269', 1539056104269, 1);
 INSERT INTO `admin_token` VALUES (99, '1538451659465', 1539056459465, 1);
 INSERT INTO `admin_token` VALUES (100, '1538451755480', 1539056555480, 1);
 INSERT INTO `admin_token` VALUES (101, '1538479869035', 1539084669035, 1);
+INSERT INTO `admin_token` VALUES (102, '1538544086740', 1539148886740, 1);
+INSERT INTO `admin_token` VALUES (103, '1538544283115', 1539149083115, 2);
+INSERT INTO `admin_token` VALUES (104, '1538544377358', 1539149177358, 1);
+INSERT INTO `admin_token` VALUES (105, '1538544438865', 1539149238865, 1);
+INSERT INTO `admin_token` VALUES (106, '1538544535899', 1539149335899, 1);
+INSERT INTO `admin_token` VALUES (107, '1549085515352', 1549690315352, 1);
+INSERT INTO `admin_token` VALUES (108, '1549174580835', 1549779380835, 1);
+INSERT INTO `admin_token` VALUES (109, '1549175857598', 1549780657598, 1);
+INSERT INTO `admin_token` VALUES (110, '1549180919487', 1549785719487, 1);
+INSERT INTO `admin_token` VALUES (111, '1549789270262', 1550394070262, 1);
+INSERT INTO `admin_token` VALUES (112, '1549790591024', 1550395391024, 1);
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -151,7 +162,7 @@ CREATE TABLE `admin_user`  (
 -- ----------------------------
 INSERT INTO `admin_user` VALUES (1, 'admin', 1, '13900000000', 'http://localhost:3000/admin_avatar/admin_avatar152352057939415677.jpg', 'admin', 1523520579, 0);
 INSERT INTO `admin_user` VALUES (2, 'editor', 2, '13800000001', 'http://localhost:3000/stu_avatar/默认.jpg', 'admin', 1523421448, 0);
-INSERT INTO `admin_user` VALUES (3, 'lizp', 1, '13555555555', 'http://localhost:3000/stu_avatar/默认.jpg', 'admin', 1523420705, 0);
+INSERT INTO `admin_user` VALUES (3, 'lizp', 2, '13555555555', 'http://localhost:3000/stu_avatar/默认.jpg', 'admin', 1523420705, 0);
 
 -- ----------------------------
 -- Table structure for boss
@@ -166,19 +177,20 @@ CREATE TABLE `boss`  (
   `password` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `isDel` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of boss
 -- ----------------------------
 INSERT INTO `boss` VALUES (1, '测试boss', '13555555555', 1, '男', 'aaaaaa', 0);
 INSERT INTO `boss` VALUES (3, '王5555v1', '13599999999', 1, '女', 'aaaaaa', 0);
-INSERT INTO `boss` VALUES (4, '测试boss1', '18966666666', 1, '男', 'aaaaaa', 0);
+INSERT INTO `boss` VALUES (4, '测试boss1', '13112341234', 1, '男', 'a12341234', 0);
 INSERT INTO `boss` VALUES (5, 'test1v1', '13512877130', 1, '男', 'qqqqqq', 0);
 INSERT INTO `boss` VALUES (6, 'test2v1', '13512877130', 1, '男', 'aaa111', 1);
 INSERT INTO `boss` VALUES (7, 'aaaaav1', '13555548774', 1, '男', 'aaaaaa', 1);
 INSERT INTO `boss` VALUES (8, 'qqqqqq', '13544444444', 0, '男', 'qqqqqq', 0);
 INSERT INTO `boss` VALUES (9, 'boss_t1', '13555555555', 1, '男', 'a111111', 0);
+INSERT INTO `boss` VALUES (10, '张1111', '13212341234', 1, '男', 'a12341234', 0);
 
 -- ----------------------------
 -- Table structure for boss_token
@@ -190,7 +202,7 @@ CREATE TABLE `boss_token`  (
   `deadline` bigint(255) NOT NULL,
   `boss_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 205 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 215 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of boss_token
@@ -240,6 +252,16 @@ INSERT INTO `boss_token` VALUES (201, '1538451751481', 1539056551481, 4);
 INSERT INTO `boss_token` VALUES (202, '1538470157792', 1539074957792, 4);
 INSERT INTO `boss_token` VALUES (203, '1538470298929', 1539075098929, 4);
 INSERT INTO `boss_token` VALUES (204, '1538480245166', 1539085045166, 9);
+INSERT INTO `boss_token` VALUES (205, '1538543720169', 1539148520169, 4);
+INSERT INTO `boss_token` VALUES (206, '1538543730755', 1539148530755, 4);
+INSERT INTO `boss_token` VALUES (207, '1549086028091', 1549690828091, 4);
+INSERT INTO `boss_token` VALUES (208, '1549174576385', 1549779376385, 4);
+INSERT INTO `boss_token` VALUES (209, '1549175854343', 1549780654343, 4);
+INSERT INTO `boss_token` VALUES (210, '1549177890480', 1549782690480, 4);
+INSERT INTO `boss_token` VALUES (211, '1549178807843', 1549783607843, 10);
+INSERT INTO `boss_token` VALUES (212, '1549178825364', 1549783625364, 4);
+INSERT INTO `boss_token` VALUES (213, '1549629143599', 1550233943599, 4);
+INSERT INTO `boss_token` VALUES (214, '1549789278773', 1550394078773, 4);
 
 -- ----------------------------
 -- Table structure for course
@@ -337,16 +359,13 @@ CREATE TABLE `hostel`  (
   `isDel` int(11) NOT NULL,
   `photos` json NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of hostel
 -- ----------------------------
-INSERT INTO `hostel` VALUES (1, 1, 'aaa', '简介简介', '地址地址地址地址地址地址地址地址地址地址', '天津', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos153520730171418472.jpg\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos153520731840010926.png\\\"]\"');
-INSERT INTO `hostel` VALUES (2, 1, '测试照片', '企鹅去问我去饿我去饿', '我去饿我去额为', '南京', 0, '\"[\\\"http://c.hiphotos.baidu.com/image/h%3D300/sign=e7c761355dda81cb51e685cd6264d0a4/4bed2e738bd4b31ccda81d7a8bd6277f9f2ff85f.jpg\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos153520728002918660.png\\\"]\"');
-INSERT INTO `hostel` VALUES (8, 1, '这是个旅馆', 'qweqwewqe', 'qweqweqwe', '北京', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos153535694114616211.jpeg\\\"]\"');
-INSERT INTO `hostel` VALUES (9, 4, '旅馆测试', '旅馆测试旅馆测试旅馆测试旅馆测试', '旅馆测试旅馆测试旅馆测试', '天津', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos153624021829612974.jpg\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos153624021829711036.jpg\\\"]\"');
-INSERT INTO `hostel` VALUES (11, 4, '高级旅馆12', '请问请问 ', '全额万绮雯', '北京', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos153845188844918514.jpg\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos153845188845015220.jpg\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos153845188845115399.jpg\\\"]\"');
+INSERT INTO `hostel` VALUES (1, 4, '拉萨三年后客栈', '武侠里常说，性情中人。如今，我们希望这样有真性情的人，能来拉萨。拉萨三年后客栈，找寻真性情义工。有偏执、有痴狂、是自我，是为真性情。\n千年前，会稽山阴之兰亭，王羲之大醉，笔落：夫人之相与，俯仰一世，或取诸怀抱，悟言一室之内；或因寄所托，放浪形骸之外。而今，悟言一室，我们希望，客栈里彼此的交流，充满真性情。', '西藏拉萨', '西藏自治区', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos154917655957216503.JPG\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos154917695785710009.JPG\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos154917698054217030.JPG\\\"]\"');
+INSERT INTO `hostel` VALUES (2, 4, '岛语民宿', '关于东山岛： \n这里曾是电影【左耳】的取景地，贪睡的人都不舍错过岛上的每一场日出日落。 \n面朝大海，春暖花开是我们的日常。闲暇时间，三人两影漫步南门湾。这里没有 \n高楼大厦，没有灯火辉煌。但每晚归港的渔船，每户亮起的灯火，足以暖人心。', '福建省', '福建', 0, '\"[\\\"http://localhost:3000/hostel_photos/hostel_photos154917794338818618.JPG\\\",\\\"http://localhost:3000/hostel_photos/hostel_photos154917794345911518.JPG\\\"]\"');
 
 -- ----------------------------
 -- Table structure for news
@@ -517,7 +536,7 @@ CREATE TABLE `order`  (
   `create_time` bigint(20) NOT NULL,
   `isDel` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order
@@ -532,6 +551,8 @@ INSERT INTO `order` VALUES (29, 1, 5, 1524067601, 0);
 INSERT INTO `order` VALUES (30, 2, 1, 1536238548, 0);
 INSERT INTO `order` VALUES (33, 9, 1, 1538454355, 0);
 INSERT INTO `order` VALUES (34, 10, 1, 1538480167, 0);
+INSERT INTO `order` VALUES (35, 4, 1, 1538545857, 0);
+INSERT INTO `order` VALUES (36, 11, 1, 1538545948, 0);
 
 -- ----------------------------
 -- Table structure for recruit
@@ -547,20 +568,21 @@ CREATE TABLE `recruit`  (
   `salary` int(10) NOT NULL,
   `create_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of recruit
 -- ----------------------------
-INSERT INTO `recruit` VALUES (1, '天津地区招募', 0, 0, '天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容', 1, 15, 1523352574);
-INSERT INTO `recruit` VALUES (2, '大学生义工招募', 1, 0, '阿瑟东撒的', 2, 5, 1523352574);
-INSERT INTO `recruit` VALUES (3, '招募测试', 1, 0, '阿大撒大撒大撒的', 1, 5, 1523352574);
-INSERT INTO `recruit` VALUES (4, 'recruit', 1, 0, '阿瑟东撒的', 2, 5, 1523352574);
+INSERT INTO `recruit` VALUES (1, '天津地区招募', 0, 1, '天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容天津地区招募详情内容', 1, 15, 1523352574);
+INSERT INTO `recruit` VALUES (2, '大学生义工招募', 1, 1, '阿瑟东撒的', 2, 5, 1523352574);
+INSERT INTO `recruit` VALUES (3, '招募测试', 1, 1, '阿大撒大撒大撒的', 1, 5, 1523352574);
+INSERT INTO `recruit` VALUES (4, 'recruit', 1, 1, '阿瑟东撒的', 2, 5, 1523352574);
 INSERT INTO `recruit` VALUES (8, '关键词查询测试', 0, 0, 'weqe', 8, 123, 1535360498);
-INSERT INTO `recruit` VALUES (9, '测试测试', 0, 0, '测试测试', 11, 3, 1536240740);
-INSERT INTO `recruit` VALUES (10, '这是一条招募1', 1, 0, '这是一条招募详情', 9, 1, 1538452426);
-INSERT INTO `recruit` VALUES (11, 'test', 0, 0, 'testdesp', 9, 1, 1538458627);
-INSERT INTO `recruit` VALUES (19, '测试新增', 0, 0, '126323112313212313213', 11, 1, 1538479436);
+INSERT INTO `recruit` VALUES (9, '测试测试', 0, 1, '测试测试', 11, 3, 1536240740);
+INSERT INTO `recruit` VALUES (10, '这是一条招募1', 1, 1, '这是一条招募详情', 9, 1, 1538452426);
+INSERT INTO `recruit` VALUES (11, 'test', 1, 1, 'testdesp', 9, 1, 1538458627);
+INSERT INTO `recruit` VALUES (19, '测试新增', 0, 1, '126323112313212313213', 11, 1, 1538479436);
+INSERT INTO `recruit` VALUES (20, '岛屿民俗招募义工', 0, 0, '义工时间：\n2017年寒暑假期间，为期至少15天，根据你的个人时间表进行安排。 \n工作内容：\n平常吃完早饭，浇浇花草，做一些简单的打扫工作，或辅助主人处理客房订单，接待远方而来的旅行者等等。闲暇时间你也可以陪远方的朋友喝喝茶、看看书······完成每天的义工任务后，你可以自由安排时间。 \n食宿安排：\n住“岛语”或古城老房，用餐时间和“岛语”小伙伴一起，一起谈天说地，也可畅饮一番，好不快活~~ ', 2, 1, 1549180576);
 
 -- ----------------------------
 -- Table structure for roles
@@ -607,7 +629,7 @@ CREATE TABLE `stu_token`  (
   `deadline` bigint(255) NOT NULL,
   `stu_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 162 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 174 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of stu_token
@@ -709,6 +731,18 @@ INSERT INTO `stu_token` VALUES (158, '1535375824089', 1535980624089, 1);
 INSERT INTO `stu_token` VALUES (159, '1536236968873', 1536841768873, 1);
 INSERT INTO `stu_token` VALUES (160, '1536238124176', 1536842924176, 1);
 INSERT INTO `stu_token` VALUES (161, '1538451931149', 1539056731149, 1);
+INSERT INTO `stu_token` VALUES (162, '1538545711996', 1539150511996, 1);
+INSERT INTO `stu_token` VALUES (163, '1549086497390', 1549691297390, 1);
+INSERT INTO `stu_token` VALUES (164, '1549174584577', 1549779384577, 1);
+INSERT INTO `stu_token` VALUES (165, '1549178897869', 1549783697869, 1);
+INSERT INTO `stu_token` VALUES (166, '1549179251233', 1549784051233, 1);
+INSERT INTO `stu_token` VALUES (167, '1549181243116', 1549786043116, 1);
+INSERT INTO `stu_token` VALUES (168, '1549183414974', 1549788214974, 1);
+INSERT INTO `stu_token` VALUES (169, '1549183426833', 1549788226833, 1);
+INSERT INTO `stu_token` VALUES (170, '1549183505323', 1549788305323, 1);
+INSERT INTO `stu_token` VALUES (171, '1549183751667', 1549788551667, 1);
+INSERT INTO `stu_token` VALUES (172, '1549629273802', 1550234073802, 1);
+INSERT INTO `stu_token` VALUES (173, '1549789293498', 1550394093498, 1);
 
 -- ----------------------------
 -- Table structure for student
@@ -758,7 +792,7 @@ CREATE TABLE `volun`  (
 -- ----------------------------
 -- Records of volun
 -- ----------------------------
-INSERT INTO `volun` VALUES (1, '张3333', '13500000000', 'http://localhost:3000/stu_avatar/1.jpg', 1, '男', 'aaaaaa', 0, 1523352574);
+INSERT INTO `volun` VALUES (1, '张3333', '13512341234', 'http://localhost:3000/stu_avatar/stu_avatar154917886177111768.JPG', 1, '男', 'aaaaaa', 0, 1523352574);
 INSERT INTO `volun` VALUES (2, '李4444', '13555555555', 'http://localhost:3000/stu_avatar/2.jpg', 0, '男', 'aaaaaa', 0, 1523352614);
 INSERT INTO `volun` VALUES (3, '王5555', '13599999999', 'http://localhost:3000/stu_avatar/stu_avatar152351937983813001.png', 1, '女', 'aaaaaa', 0, 1523352636);
 INSERT INTO `volun` VALUES (4, '赵6666', '18966666666', 'http://localhost:3000/stu_avatar/默认.jpg', 1, '男', 'aaaaaa', 0, 1523352665);

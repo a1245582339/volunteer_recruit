@@ -36,7 +36,9 @@ exports.RecruitList = function(req, res, next) {
       )
       Promise.all(hostelIdArr.map((item) => findPro({id: item}))).then(
         result => {
+          console.log(result)
           result.map((item, index) => {
+            
             list[index].hostel_name = item[0].name
             list[index].province = item[0].province
           })
