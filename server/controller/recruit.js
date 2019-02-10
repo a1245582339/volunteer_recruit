@@ -65,7 +65,7 @@ exports.bossRecruitList = function(req, res, next) {
           err ? reject(err) : resolve(result)
         })
     )
-    Promise.all(hostelId.map((item) => findPro({hostel_id: item}))).then(
+    Promise.all(hostelId.map((item) => findPro({hostel_id: item,isDel: 0}))).then(
       result => {
         var data = []
         for(let i = 0; i < result.length; i++) {
