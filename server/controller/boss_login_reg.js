@@ -61,7 +61,8 @@ exports.Login = function (req, res, next) {
   req.models.boss.find({
     boss_name: log.username,
     password: log.password,
-    ischecked: 1
+    ischecked: 1,
+    isDel: 0
   }, function (err, list) {
     if (list.length == 0) {
       res.json({

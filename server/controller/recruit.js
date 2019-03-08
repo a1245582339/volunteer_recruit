@@ -4,7 +4,7 @@ var fs = require("fs");
 // 获取招募列表
 exports.RecruitList = function(req, res, next) {
   var searchWord = req.query.searchWord
-  req.models.recruit.find({}, function(err, list) {
+  req.models.recruit.find({isDel: 0}, function(err, list) {
     if (err) {
       console.log(err)
       res.json({ code: -1 });

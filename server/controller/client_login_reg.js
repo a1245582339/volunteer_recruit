@@ -28,6 +28,8 @@ exports.CheckNameExist = function (req, res, next) {
 // 用户注册
 exports.Register = function (req, res, next) {
   var reg = req.body
+  const time = Date.now()
+  console.log(time)
   req.models.volun.find({
     volun_name: reg.user_name
   }, function (err, list) {
@@ -35,9 +37,8 @@ exports.Register = function (req, res, next) {
       req.models.volun.create({
         volun_name: reg.user_name,
         tel: reg.tel,
-        balance: 0,
         avatar: "http://localhost:3000/stu_avatar/默认.jpg",
-        create_time: Date.parse(new Date()) / 1000,
+        create_time: time / 1000,
         ischecked: 0,
         sex: reg.sex,
         password: reg.password,
@@ -62,7 +63,8 @@ exports.Login = function (req, res, next) {
   var log = req.body
   req.models.volun.find({
     volun_name: log.user_name,
-    password: log.password
+    password: log.password,
+    isDel: 0
   }, function (err, list) {
     if (list.length == 0) {
       res.json({

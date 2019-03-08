@@ -8,7 +8,8 @@ module.exports = function(orm, db) {
       ischecked:Number,
       sex: String,
       password: String,
-      isDel: Number
+      isDel: Number,
+      create_time: Number
     })
   };
   

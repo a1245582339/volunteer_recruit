@@ -75,7 +75,7 @@
   export default {
     name: 'login',
     data() {
-       var vm = this;
+      var vm = this
       const validateUsername = (rule, value, callback) => {
         if (!isvalidUsername(value)) {
           callback(new Error('请输入正确的用户名'))
@@ -83,36 +83,36 @@
           callback()
         }
       }
-     
-    const validatePass = (rule, value, callback) => {
-      var value = vm.regForm.password;
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else if (!/^[a-zA-Z]\w{3,17}$/.test(value)) {
-        callback(
-          new Error(
-            "密码须以字母开头，长度在4~18之间，只能包含字母、数字和下划线"
+  
+      const validatePass = (rule, value, callback) => {
+        var value = vm.regForm.password
+        if (value === '') {
+          callback(new Error('请输入密码'))
+        } else if (!/^[a-zA-Z]\w{5,17}$/.test(value)) {
+          callback(
+            new Error(
+              '密码须以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
+            )
           )
-        );
-      } else {
-        callback();
+        } else {
+          callback()
+        }
       }
-    };
-    const validateTel = (rule, value, callback) => {
-      var value = vm.regForm.tel;
-      if (value === "") {
-        callback(new Error("请输入手机号码"));
-      } else if (
-        !/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(
-          value
-        )
-      ) {
+      const validateTel = (rule, value, callback) => {
+        var value = vm.regForm.tel
+        if (value === '') {
+          callback(new Error('请输入手机号码'))
+        } else if (
+          !/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(
+            value
+          )
+        ) {
         // 手机号码正则匹配更新到2018.1，支持166网段
-        callback(new Error("请输入正确手机号码!"));
-      } else {
-        callback();
+          callback(new Error('请输入正确手机号码!'))
+        } else {
+          callback()
+        }
       }
-    };
       return {
         sexArr: ['男', '女'],
         loginForm: {
@@ -128,7 +128,7 @@
         loginRules: {
           username: [{
             required: true,
-            trigger: 'blur',
+            trigger: 'blur'
           }],
           password: [{
             required: true,
@@ -146,13 +146,13 @@
           password: [{
             required: true,
             trigger: 'blur',
-            validator: validatePass,
+            validator: validatePass
           }],
           tel: [{
             required: true,
             trigger: 'blur',
             validator: validateTel
-          }],
+          }]
         },
         loading: false,
         regloading: false,
@@ -199,9 +199,8 @@
                 showClose: true,
                 message: '注册成功，请等待管理员审核后登录',
                 type: 'success'
-              });
+              })
             })
-            
           } else {
             console.log('error submit!!')
             return false
